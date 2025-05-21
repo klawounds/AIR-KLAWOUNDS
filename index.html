@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AIR KLAWOUNDS</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #87CEEB;
+      overflow: hidden;
+    }
+
+    header {
+      text-align: center;
+      height: 1cm;
+      background: rgba(255, 255, 255, 0.7);
+      line-height: 1cm;
+      font-size: 1.2em;
+      font-weight: bold;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sky {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 1cm - 80px);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .cloud {
+      position: absolute;
+      width: 150px;
+      height: 90px;
+      background: url('img/oblak.png') no-repeat center/contain;
+      animation: floatCloud 60s linear infinite;
+    }
+
+    .cloud1 { top: 50px; left: -200px; animation-delay: 0s; }
+    .cloud2 { top: 120px; left: -400px; animation-delay: 10s; }
+    .cloud3 { top: 200px; left: -600px; animation-delay: 20s; }
+    .cloud4 { top: 270px; left: -800px; animation-delay: 30s; }
+    .cloud5 { top: 100px; left: -1000px; animation-delay: 40s; }
+    .cloud6 { top: 160px; left: -1200px; animation-delay: 50s; }
+
+    @keyframes floatCloud {
+      0% { left: -300px; }
+      100% { left: 110%; }
+    }
+
+    .plane {
+      position: absolute;
+      width: 120px;
+      height: 60px;
+      background: url('img/plane.png') no-repeat center/contain;
+      top: 180px;
+      left: -200px;
+      opacity: 0;
+      animation: none;
+    }
+
+    footer {
+      height: 80px;
+      background: rgba(100, 100, 100, 0.4);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-radius: 20px 20px 0 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 2;
+    }
+
+    footer button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    footer button img {
+      width: 40px;
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>AIR KLAWOUNDS</header>
+
+  <div class="sky">
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+    <div class="cloud cloud4"></div>
+    <div class="cloud cloud5"></div>
+    <div class="cloud cloud6"></div>
+    <div class="plane" id="plane"></div>
+  </div>
+
+  <footer>
+    <button><img src="img/quest.png" alt="Задания" /></button>
+    <button><img src="img/reic.png" alt="Рейсы" /></button>
+    <button><img src="img/home.png" alt="Домой" /></button>
+    <button><img src="img/shop.png" alt="Магазин" /></button>
+    <button><img src="img/angar.png" alt="Ангар" /></button>
+  </footer>
+
+  <script>
+    const plane = document.getElementById("plane");
+
+    function flyPlane() {
+      plane.style.transition = "none";
+      plane.style.left = "-200px";
+      plane.style.opacity = "1";
+
+      setTimeout(() => {
+        plane.style.transition = "left 10s linear, opacity 2s ease-out";
+        plane.style.left = "110%";
+        setTimeout(() => {
+          plane.style.opacity = "0";
+        }, 8000);
+      }, 100);
+    }
+
+    flyPlane();
+    setInterval(flyPlane, 10000);
+  </script>
+</body>
+</html>
